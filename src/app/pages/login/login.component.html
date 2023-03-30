@@ -1,0 +1,44 @@
+<app-header></app-header>
+
+<div class="h-screen flex flex-col justify-between">
+    <div class="mt-40 pb-16">
+        <!-- Formulario de login -->
+        <div class="flex justify-center">
+            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full lg:w-1/2" [formGroup]="loginForm">
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-bold mb-2" for="username">
+                        Usuario
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="username" name="username" type="text" placeholder="Ingresa tu correo institucional">
+                    <!-- <div class="text-red-500 text-xs italic mt-2"> 
+                      <ng-container *ngIf="username.invalid && (username.dirty || username.touched)">
+                          <ng-container *ngIf="username.errors.required">El usuario es requerido</ng-container>
+                          <ng-container *ngIf="username.errors.email">Debe ser un correo válido</ng-container>
+                      </ng-container> -->
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-bold mb-2" for="password">
+                        Contraseña
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="password" type="password" placeholder="Ingresa tu contraseña" autocomplete="off">
+                    <!-- <div class="text-red-500 text-xs italic mt-2"
+                      *ngIf="password.invalid && (password.dirty || password.touched)">
+                      La contraseña es requerida
+                  </div> -->
+                </div>
+                <div class="flex items-center justify-between">
+                    <button
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        [disabled]="loginForm.invalid">
+                        Ingresar
+                    </button>
+                </div>
+            </form>
+        </div>
+        <app-app-footer></app-app-footer>
+    </div>
+</div>
