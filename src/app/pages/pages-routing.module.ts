@@ -1,7 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponentComponent } from '../shared/page-not-found-component/page-not-found-component.component';
+// import { LoginComponent } from './login/login.component';
+// import { PageNotFoundComponentComponent } from '../shared/page-not-found-component/page-not-found-component.component';
+const routes: Routes = [
+
+  {
+    path: '',
+    children: [
+      {
+        path: 'user',
+        component: DashboardComponent
+      },
+      // {
+      //   path: 'login',
+      //   component: LoginComponent
+      // },
+      {
+        path: '**',
+        component: PageNotFoundComponentComponent
+      }
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
