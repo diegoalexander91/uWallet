@@ -4,25 +4,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponentComponent } from '../shared/page-not-found-component/page-not-found-component.component';
-// import { LoginComponent } from './login/login.component';
-// import { PageNotFoundComponentComponent } from '../shared/page-not-found-component/page-not-found-component.component';
+import { AuthGuard } from '../guards/auth.guard';
+
 const routes: Routes = [
 
   {
     path: '',
+    // component: DashboardComponent,
     children: [
-      {
-        path: 'user',
-        component: DashboardComponent
-      },
-      // {
-      //   path: 'login',
-      //   component: LoginComponent
-      // },
-      {
-        path: '**',
-        component: PageNotFoundComponentComponent
-      }
+      { path: '', redirectTo: '**', pathMatch: 'full' },
+      { path: 'home', component: DashboardComponent, },
+      { path: '**', component: PageNotFoundComponentComponent },
     ]
   }
 ];

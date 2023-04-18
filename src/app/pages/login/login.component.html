@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="h-screen flex flex-col justify-between">
-    <div class="mt-40 pb-16">
+    <div class="mt-32 pb-16">
         <!-- Formulario de login -->
         <div class="flex justify-center">
             <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full lg:w-1/2" [formGroup]="loginForm"
@@ -30,19 +30,45 @@
                         {{errorPass}}
                     </div>
                 </div>
-                <div class="flex items-center justify-between">
+                <div class="mb-6">
+                    <div
+                        class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                        <input type="checkbox" id="toggle" name="toggle"
+                            class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
+                            formControlName="politica">
+                        <label for="toggle"
+                            class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer">
+                        </label>
+                    </div>
+                    Aceptas la
+                    <a class="underline"
+                        href="https://intranet.uniminuto.edu/documents/16129/0/Resoluci%C3%B3n+Rectoral+No+1542+Programa+Integral+Gesti%C3%B3n+Datos+Personales.pdf/8d18039d-7be8-44d8-ad5d-390b7299066a">
+                        política de tratamiento de datos?
+                    </a>
+
+                    <div class="text-red-500 text-xs italic mt-2" *ngIf="validacion('politica')">
+                        {{politica}}
+                    </div>
+
+                </div>
+                <div class="flex items-center justify-center">
                     <button
-                        [class]="(loginForm.invalid) ? 'bg-blue-200 text-whitefont-bold py-2 px-4 rounded pointer-events-none': 'bg-blue-500 hover:bg-blue-400 text-white hover:text-gray-100 font-bold py-2 px-4 rounded hover:cursor-pointer'">
+                        [class]="(loginForm.invalid) ? 'bg-blue-100 text-white font-bold py-2 px-20 rounded-full pointer-events-none ' : 'bg-blue-500 hover:bg-blue-400 text-white hover:text-gray-100 font-bold py-2 px-20 rounded-full hover:cursor-pointer'">
                         {{ingresar}}
                     </button>
                 </div>
+                <div class="flex justify-center pt-1">
+                    <a href="https://tuclave.uniminuto.edu"
+                        class="block mx-auto bg-white hover:border hover:border-yellow-500 px-6 py-2 rounded-full text-center">
+                        Olvidaste la contraseña?</a>
+                </div>
+                <div class="bg-gray-100">
+                    <div *ngIf="isLoading" class="text-center py-4 bg-blue-200">Enviando información...</div>
+                </div>
             </form>
-        </div>
-        <div class="mt-40 pb-16">
-            <pre>Valid: {{loginForm.valid}}</pre>
-            <pre>Pristine {{loginForm.pristine}}</pre>
-            <pre>Touched {{loginForm.touched}}</pre>
-            <pre>Value {{loginForm.value |json}}</pre>
+
+
+
         </div>
         <app-app-footer></app-app-footer>
     </div>

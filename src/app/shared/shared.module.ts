@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 // import { AppRoutingModule } from '../app-routing.module';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
+import { SharedRoutingModule } from './shared-routing.module';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { PageNotFoundComponentComponent } from './page-not-found-component/page-
   ],
   imports: [
     CommonModule,
-    // AppRoutingModule
+    SharedRoutingModule
   ],
   exports: [
     AppFooterComponent,

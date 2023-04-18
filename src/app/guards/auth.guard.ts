@@ -1,20 +1,45 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRouteSnapshot, CanActivate, CanMatch, Route, UrlSegment, UrlTree, RouterStateSnapshot, Router } from '@angular/router';
+import { Observable, tap } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthGuard implements CanActivate, CanActivateChild {
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+import { AuthenticationService } from '../services/login.service';
+
+@Injectable({ providedIn: 'root' })
+export class AuthGuard implements CanMatch, CanActivate {
+
+
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router,
+  ) { }
+
+  private checkAuthStatus(): boolean | Observable<boolean> {
+
+    return this.authService.checkAuthentication()
+      .pipe(
+        tap(isAuthenticated => console.log('Authenticated:', isAuthenticated)),
+        tap(isAuthenticated => {
+          if (!isAuthenticated) {
+            this.router.navigate(['./auth/login'])
+          }
+        }),
+
+      )
+
   }
-  canActivateChild(
-    childRoute: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+
+
+  canMatch(route: Route, segments: UrlSegment[]): boolean | Observable<boolean> {
+    // console.log('Can Match');
+    // console.log({ route, segments })
+    return this.checkAuthStatus();
   }
-  
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
+    // console.log('Can Activate');
+    // console.log({ route, state })
+
+    return this.checkAuthStatus();
+  }
+
 }
