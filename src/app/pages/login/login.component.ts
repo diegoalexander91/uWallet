@@ -14,13 +14,13 @@ export class LoginComponent {
   isLoading: boolean = false;
 
   loginForm: FormGroup = this.fb.group({
-    email: ['', [
+    email: ['despitia@uniminuto.edu', [
       Validators.required,
       Validators.pattern(/^[a-zA-Z0-9._%+-]+@(uniminuto\.edu|uniminuto\.edu\.co)$/),
       Validators.minLength(4),
       Validators.maxLength(39)
     ]],
-    password: ['', [
+    password: ['Ana07507*', [
       Validators.required,
       Validators.minLength(5),
     ]],
@@ -66,7 +66,6 @@ export class LoginComponent {
     return this.loginForm.get(campo)?.invalid
       && this.loginForm.get(campo)?.touched;
   }
-
   onSubmit() {
     this.isLoading = true;
     const email = this.loginForm.get('email')?.value;
@@ -74,10 +73,12 @@ export class LoginComponent {
 
     this.authService.login(email, password)
       .subscribe(data => {
-        console.log(data);
         if (data.ok) {
           this.isLoading = false;
-          this.router.navigate(['dashboard/home']); // Redirige al usuario a la ruta home
+          this.router.navigate(['dashboard'], { state: { data } }); // Redirige al usuario a la ruta home
+        }
+        else {
+          console.log(data);
         }
       });
 

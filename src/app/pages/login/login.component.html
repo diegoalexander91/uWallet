@@ -1,11 +1,18 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
+<div class="flex min-h-screen flex-col w-screen justify-center items-center">
+    <div class="h-screen grid md:grid-cols-2 w-full">
+        <!-- Columna izquierda con fondo azul -->
+        <div class="bg-yellow-500 xs:inline md:flex md:items-center md:justify-center">
+            <div class="flex items-center h-full">
+                <!-- <img src="assets/institucional/logo_b.png" alt="Imagen" class="block mx-auto xs:w-1/8 w-2/4"> -->
+                <img src="assets/institucional/logo_b.png" alt="Imagen" class="block mx-auto w-1/4 sm:w-auto">
 
-<div class="h-screen flex flex-col justify-between">
-    <div class="mt-32 pb-16">
+            </div>
+        </div>
         <!-- Formulario de login -->
-        <div class="flex justify-center">
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full lg:w-1/2" [formGroup]="loginForm"
-                (ngSubmit)="onSubmit()">
+        <!-- <div class="flex justify-center items-center"> -->
+        <div class="flex justify-center mt-16 mr-6 ml-6">
+            <form class="bg-white pt-6 pb-8 mb-4 w-full lg:w-1/2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="mb-4">
                     <label class="block text-gray-700 font-bold mb-2" for="email">
                         Correo institucional
@@ -66,10 +73,7 @@
                     <div *ngIf="isLoading" class="text-center py-4 bg-blue-200">Enviando información...</div>
                 </div>
             </form>
-
-
-
         </div>
-        <app-app-footer></app-app-footer>
     </div>
+    <!-- <app-footer></app-footer> -->
 </div>

@@ -1,3 +1,3 @@
 export const environment = {
-    URLAuth: 'http://academia.uniminuto.edu/auth/auth'
+    URLAuth: 'https://webapi.uniminuto.edu/diplogrados/Seguridad/loginDAWuallet'
 };

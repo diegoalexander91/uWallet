@@ -10,13 +10,16 @@ const routes: Routes = [
 
   {
     path: '',
-    // component: DashboardComponent,
     children: [
-      { path: '', redirectTo: '**', pathMatch: 'full' },
-      { path: 'home', component: DashboardComponent, },
-      { path: '**', component: PageNotFoundComponentComponent },
+      { path: '', component: DashboardComponent },
+      { path: '404', component: PageNotFoundComponentComponent },
+      { path: '**', redirectTo: '404', pathMatch: 'full'  },
     ]
+  },
+  {
+    path: '', component: DashboardComponent, pathMatch: 'prefix'
   }
+
 ];
 
 @NgModule({
